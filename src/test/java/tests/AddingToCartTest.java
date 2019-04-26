@@ -12,28 +12,23 @@ import static org.testng.Assert.assertTrue;
 
 public class AddingToCartTest extends BaseTest{
 
-    @Test
+    @Test(groups = "smoke")
     public void checkitemInCart() {
-        driver.navigate().to("https://spree-vapasi.herokuapp.com");
 
-        driver.findElement(By.id("link-to-login")).click();
-        driver.findElement(By.id("spree_user_email")).sendKeys("spree@example.com");
-        driver.findElement(By.id("spree_user_password")).sendKeys("spree123");
-        driver.findElement(By.name("commit")).click();
+        // Login to the application
+        Login("spree@example.com", "spree123");
 
-        driver.findElement((By.linkText("Bags"))).click();
-        driver.findElement((By.linkText("Ruby on Rails Bag"))).click();
+        //Select the Category
+        SelectCategory(By.linkText("Bags"), By.linkText("Ruby on Rails Bag"));
 
-        if (driver.findElement((By.id("add-to-cart-button"))).isDisplayed())
-        {
-            driver.findElement((By.id("add-to-cart-button"))).click();
-        }
+        //Adding to Cart
+        driver.findElement((By.id("add-to-cart-button"))).click();
 
-        if (driver.findElement(By.id(("cart-detail"))).isDisplayed())
-        {
-            System.out.println(("Cart is Displayed"));
-            assertTrue(driver.findElement(By.linkText("Ruby on Rails Bag")).isDisplayed());
-        }
+
+        //Check Selected Item id Displayed
+        System.out.println(("Cart is Displayed"));
+        assertTrue(driver.findElement(By.linkText("Ruby on Rails Bag")).isDisplayed());
+
         assertTrue(driver.findElement(By.id("cart-detail")).findElement(By.id("line_items")).isDisplayed());
 
         List<WebElement> cartlist = driver.findElement(By.id("cart-detail")).findElements(By.className("line-item"));
@@ -49,6 +44,24 @@ public class AddingToCartTest extends BaseTest{
         }
 
     }
+
+    public void SelectCategory(By bags, By ruby_on_rails_bag) {
+        driver.findElement(bags).click();
+        driver.findElement(ruby_on_rails_bag).click();
+    }
+
+    public void Login(String emailid, String password)
+    {
+        driver.navigate().to("https://spree-vapasi.herokuapp.com");
+
+        driver.findElement(By.id("link-to-login")).click();
+        driver.findElement(By.id("spree_user_email")).sendKeys(emailid);
+        driver.findElement(By.id("spree_user_password")).sendKeys(password);
+        driver.findElement(By.name("commit")).click();
+
+    }
+
+
     @Test
     public void  testLogginOut()
     {

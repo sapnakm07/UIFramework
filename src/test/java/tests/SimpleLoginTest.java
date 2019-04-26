@@ -16,7 +16,7 @@ import static org.testng.Assert.assertTrue;
 
 public class SimpleLoginTest extends BaseTest{
 
-    @Test(priority  =1)
+    @Test(groups = "smoke")
     public void testLogin()
 
     {
