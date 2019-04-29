@@ -13,12 +13,11 @@ public class AddingToCart
         }
 
 
-
-    public void selectCategory()
+    public ShoppingCartPage selectCategory()
     {
         driver.findElement(By.linkText("Bags")).click();
         driver.findElement(By.linkText("Ruby on Rails Bag")).click();
         driver.findElement((By.id("add-to-cart-button"))).click();
-
+        return new ShoppingCartPage(driver);
     }
 }

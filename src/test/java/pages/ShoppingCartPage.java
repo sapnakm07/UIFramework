@@ -13,6 +13,7 @@ public class ShoppingCartPage
     WebDriver driver;
     List<WebElement> cartlist;
     String productdetails;
+    String updateCartValue;
 
     public ShoppingCartPage(WebDriver driver)
     {
@@ -32,11 +33,27 @@ public class ShoppingCartPage
         {
             WebElement lineIteminList =  ProductinList.next();
             productdetails = lineIteminList.findElement(By.className("cart-item-description")).getText();
-            System.out.println(lineIteminList.getText());
+            //System.out.println(lineIteminList.getText());
         }
 
         return productdetails;
     }
 
+    public void clickEmptyCart()
+    {
+        driver.findElement(By.name("submit")).isDisplayed();
+    }
+
+    public String clickUpdateCart()
+    {
+        driver.findElement(By.id("order_line_items_attributes_0_quantity")).clear();
+        driver.findElement(By.id("order_line_items_attributes_0_quantity")).sendKeys("2");
+        driver.findElement(By.id("update-button"));
+        updateCartValue=driver.findElement(By.id("order_line_items_attributes_0_quantity")).getText();
+    }
+    public void clickCheckout()
+    {
+        driver.findElement(By.id("checkout-link")).click();
+    }
 
 }

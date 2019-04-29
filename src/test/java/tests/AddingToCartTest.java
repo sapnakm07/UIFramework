@@ -15,23 +15,53 @@ public class AddingToCartTest extends BaseTest{
     public void checkitemInCart() {
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.Login("spree@example.com", "spree123");
 
-
-        AddingToCart addToCart = new AddingToCart(driver);
-        addToCart.selectCategory();
-
-
-        ShoppingCartPage shoppingCartPage = new ShoppingCartPage(driver);
+        ShoppingCartPage shoppingCartPage = loginPage.Login("spree@example.com", "spree123").selectCategory();
         int cartlist = shoppingCartPage.getsizeShoppingCartDetails();
+
+        System.out.println(cartlist);
 
         assertTrue(cartlist != 0);
 
-
-        shoppingCartPage.getShoppingCartDetails();
         String sCartDetails = shoppingCartPage.getShoppingCartDetails();
 
+        System.out.println(sCartDetails);
         assertTrue(sCartDetails.contains("Ruby on Rails Bag"));
+    }
+
+    public void UpdateCartValue() {
+
+        LoginPage loginPage = new LoginPage(driver);
+
+        ShoppingCartPage shoppingCartPage = loginPage.Login("spree@example.com", "spree123").selectCategory();
+
+        String sUpdateCartValue = shoppingCartPage.clickUpdateCart();
+        assertTrue(sUpdateCartValue.contains("5"));
+    }
+
+    public void VerifyCheckout() {
+        LoginPage loginPage = new LoginPage(driver);
+
+        ShoppingCartPage shoppingCartPage = loginPage.Login("spree@example.com", "spree123").selectCategory();
+
+        shoppingCartPage.clickCheckout();
+    }
+
+    }
+        //AddingToCart addToCart = new AddingToCart(driver);
+        //addToCart.selectCategory();
+
+
+        //ShoppingCartPage shoppingCartPage = new ShoppingCartPage(driver);
+        //int cartlist = shoppingCartPage.getsizeShoppingCartDetails();
+
+
+
+
+        //shoppingCartPage.getShoppingCartDetails();
+        //String sCartDetails = shoppingCartPage.getShoppingCartDetails();
+
+        //assertTrue(sCartDetails.contains("Ruby on Rails Bag"));
 
 
 
