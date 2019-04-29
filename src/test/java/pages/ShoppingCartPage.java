@@ -19,7 +19,7 @@ public class ShoppingCartPage
         this.driver=driver;
     }
 
-    public int checkShoppingCartDetails()
+    public int getsizeShoppingCartDetails()
     {
         cartlist = driver.findElement(By.id("cart-detail")).findElements(By.className("line-item"));
         return cartlist.size();

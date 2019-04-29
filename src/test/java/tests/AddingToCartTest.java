@@ -1,15 +1,11 @@
 package tests;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 import org.testng.annotations.Test;
 import pages.AddingToCart;
 import pages.LoginPage;
 import pages.ShoppingCartPage;
-
-import java.util.Iterator;
-import java.util.List;
 
 import static org.testng.Assert.assertTrue;
 
@@ -23,18 +19,22 @@ public class AddingToCartTest extends BaseTest{
 
 
         AddingToCart addToCart = new AddingToCart(driver);
-        addToCart.selectCategory(By.linkText("Bags"), By.linkText("Ruby on Rails Bag"),By.id("add-to-cart-button"));
+        addToCart.selectCategory();
 
 
         ShoppingCartPage shoppingCartPage = new ShoppingCartPage(driver);
-        int cartlist= shoppingCartPage.checkShoppingCartDetails();
+        int cartlist = shoppingCartPage.getsizeShoppingCartDetails();
 
-        assertTrue(cartlist!=0);
+        assertTrue(cartlist != 0);
+
 
         shoppingCartPage.getShoppingCartDetails();
         String sCartDetails = shoppingCartPage.getShoppingCartDetails();
 
         assertTrue(sCartDetails.contains("Ruby on Rails Bag"));
+
+
+
 
         /* Login to the application
         Login("spree@example.com", "spree123");
@@ -61,8 +61,8 @@ public class AddingToCartTest extends BaseTest{
             System.out.println(lineIteminList.findElement(By.className("cart-item-description")).getText());
             System.out.println(lineIteminList.getText());
         }*/
-
     }
+
     /*
     public void SelectCategory(By bags, By ruby_on_rails_bag) {
         driver.findElement(bags).click();

@@ -13,10 +13,11 @@ public class AddingToCart
         }
 
 
-    public void selectCategory(By bags, By ruby_on_rails_bag, By id)
+
+    public void selectCategory()
     {
-        driver.findElement(bags).click();
-        driver.findElement(ruby_on_rails_bag).click();
+        driver.findElement(By.linkText("Bags")).click();
+        driver.findElement(By.linkText("Ruby on Rails Bag")).click();
         driver.findElement((By.id("add-to-cart-button"))).click();
 
     }
