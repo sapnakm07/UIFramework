@@ -20,8 +20,6 @@ public class SimpleLoginTest extends BaseTest{
     public void testLogin()
 
     {
-
-
         driver.navigate().to("https://spree-vapasi.herokuapp.com");
         //driver.get("https://spree-vapasi.herokuapp.com");
         driver.findElement(By.id("link-to-login")).click();
