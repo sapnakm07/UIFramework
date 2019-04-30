@@ -8,12 +8,11 @@ public class CheckoutPage
     WebDriver driver;
     public CheckoutPage(WebDriver driver)
     {
-
         this.driver=driver;
     }
 
-    public void CheckOutPageExists()
+    public String CheckOutPageExists()
     {
-        driver.findElement(By.id("checkout-page"));
+        return driver.findElement(By.id("checkout")).getText();
     }
 }

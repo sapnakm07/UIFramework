@@ -12,6 +12,7 @@ public class BaseTest {
 
     @BeforeMethod(alwaysRun = true)
     public void setup() {
+        
         String currentUsersWorkingDir = System.getProperty("user.dir");
         System.out.println("Dir is " + currentUsersWorkingDir);
         System.setProperty("webdriver.chrome.driver", currentUsersWorkingDir + "/src/test/resources/chromedriver");
